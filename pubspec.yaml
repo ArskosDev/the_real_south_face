@@ -38,6 +38,9 @@ dependencies:
   google_fonts: ^4.0.3
   simple_circular_progress_bar: ^1.0.2
   get: ^4.6.6
+  cloud_firestore: ^4.14.0
+  image_picker: ^1.0.7
+  firebase_core: ^2.24.2
 
 dev_dependencies:
   flutter_test:
@@ -66,7 +69,7 @@ flutter:
     - assets/images/White-Logo.png
     - assets/images/RSF.png
     - assets/images/avata.jpg
-    - assets/imsges/profil_avatar.jpg
+    - assets/images/profil_avatar.jpg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

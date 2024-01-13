@@ -1,3 +1,5 @@
+//import 'dart:js_interop';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -6,6 +8,7 @@ import 'package:rsf/authentication/login_screen.dart';
 import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
 
 import '../widgets/input_text_widget.dart';
+import 'authentication_controller.dart';
 
 
 class RegistrationScreen extends StatefulWidget {
@@ -24,6 +27,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   TextEditingController passwordTextEditingController = TextEditingController();
   bool showProgressBar = false;
 
+  var authenticationController = AuthenticationController.instanceAuth;
+
 
 
   @override
@@ -40,7 +45,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
               Image.asset(
                 'assets/images/RSF.png',
-                width: 200,
+                width: 100,
               ),
 
               Text(
@@ -70,6 +75,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               GestureDetector(
                 onTap: (){
 
+                  //allow user to choose image
+                  authenticationController.chooseImageFromGallery();
+
                 },
                 child: const CircleAvatar(
                   radius: 80,
@@ -91,7 +99,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 margin: const EdgeInsets.symmetric(horizontal: 20),
 
                 child: InputTextWidget(
-                  textEditingController: emailTextEditingController,
+                  textEditingController: userNameTextEditingController,
                   labelString: "User name",
                   iconData: Icons.person_2_outlined,
                   isObscure: false,
@@ -144,7 +152,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               showProgressBar == false ?
               Column(
                 children: [
-                  //login button
+                  //signup button
                   Container(
                     width: MediaQuery.of(context).size.width - 38,
                     height: 54,
@@ -165,7 +173,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       },
                       child: const Center(
                         child: Text(
-                            "Login",
+                            "SignUp",
                             style: TextStyle(
                               fontSize: 20,
                               color: Colors.black,
@@ -226,7 +234,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   backColor: Colors.white38,
                 ),
               ),
-
 
             ],
           ),
