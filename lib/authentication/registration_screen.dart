@@ -1,32 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rsf/authentication/registration_screen.dart';
-import 'package:rsf/widgets/input_text_widget.dart';
+import 'package:rsf/authentication/login_screen.dart';
 import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
 
+import '../widgets/input_text_widget.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+
+class RegistrationScreen extends StatefulWidget {
+  //const RegistrationScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegistrationScreen> createState() => _RegistrationScreenState();
 }
 
 
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegistrationScreenState extends State<RegistrationScreen> {
 
+  TextEditingController userNameTextEditingController = TextEditingController();
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
   bool showProgressBar = false;
 
+
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-        body: SingleChildScrollView(
-          child: Center(
+      body: SingleChildScrollView(
+        child: Center(
           child: Column(
             children: [
 
@@ -35,21 +39,21 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
 
               Image.asset(
-              'assets/images/RSF.png',
-              width: 200,
-            ),
-
-              Text(
-                "welcome",
-                    style: GoogleFonts.acme(
-                      fontSize: 34,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold,
-                    )
+                'assets/images/RSF.png',
+                width: 200,
               ),
 
               Text(
-                  "C'est bon de vous revoir",
+                  "Bonne arrivee",
+                  style: GoogleFonts.acme(
+                    fontSize: 34,
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold,
+                  )
+              ),
+
+              Text(
+                  "Veuillez creer un compte",
                   style: GoogleFonts.acme(
                     fontSize: 25,
                     color: Colors.grey,
@@ -57,9 +61,47 @@ class _LoginScreenState extends State<LoginScreen> {
                   )
               ),
 
+
               const SizedBox(
                 height: 30,
               ),
+
+              //profile avatar
+              GestureDetector(
+                onTap: (){
+
+                },
+                child: const CircleAvatar(
+                  radius: 80,
+                  backgroundImage: AssetImage(
+                    "assets/images/profil_avatar.jpg"
+                  ),
+                  backgroundColor: Colors.black,
+                ),
+              ),
+
+
+              const SizedBox(
+                height: 30,
+              ),
+
+              //username input
+              Container(
+                width: MediaQuery.of(context).size.width,
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+
+                child: InputTextWidget(
+                  textEditingController: emailTextEditingController,
+                  labelString: "User name",
+                  iconData: Icons.person_2_outlined,
+                  isObscure: false,
+                ),
+              ),
+
+              const SizedBox(
+                height: 30,
+              ),
+
 
               //email input
               Container(
@@ -123,14 +165,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       child: const Center(
                         child: Text(
-                        "Login",
+                            "Login",
                             style: TextStyle(
                               fontSize: 20,
                               color: Colors.black,
                               fontWeight: FontWeight.w700,
 
-                        )
-                      ),
+                            )
+                        ),
 
                       ),
                     ),
@@ -145,7 +187,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        "Don't have an account ? ",
+                        "Already have an account ? ",
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.grey,
@@ -154,15 +196,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       InkWell(
                         onTap: (){
                           //send user to signup screen;
-                          Get.to(RegistrationScreen());
+                          Get.to(LoginScreen());
                         },
                         child: const Text(
-                          "Signup now",
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          )
+                            "Sign in",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            )
                         ),
                       )
                     ],
@@ -171,7 +213,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 ],
               ): Container(
-              //show animations
+                //show animations
                 child: const SimpleCircularProgressBar(
                   progressColors: [
                     Colors.lightBlue,
@@ -188,8 +230,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
             ],
           ),
-          ),
         ),
+      ),
     );
   }
 }
