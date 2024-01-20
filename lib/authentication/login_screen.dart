@@ -6,6 +6,7 @@ import 'package:rsf/widgets/input_text_widget.dart';
 import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
 
 
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -154,7 +155,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       InkWell(
                         onTap: (){
                           //send user to signup screen;
-                          Get.to(RegistrationScreen());
+                          //Get.to(const RegistrationScreen());
+                          Get.to(() => const RegistrationScreen());
                         },
                         child: const Text(
                           "Signup now",
@@ -170,19 +172,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
 
                 ],
-              ): Container(
-              //show animations
-                child: const SimpleCircularProgressBar(
-                  progressColors: [
-                    Colors.lightBlue,
-                    Colors.green,
-                    Colors.amber,
-                    Colors.red,
-                    Colors.white,
-                  ],
-                  animationDuration: 3,
-                  backColor: Colors.white38,
-                ),
+              ): const SimpleCircularProgressBar(
+                progressColors: [
+                  Colors.lightBlue,
+                  Colors.green,
+                  Colors.amber,
+                  Colors.red,
+                  Colors.white,
+                ],
+                animationDuration: 3,
+                backColor: Colors.white38,
               ),
 
 

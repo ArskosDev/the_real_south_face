@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,16 +9,37 @@ import 'package:rsf/authentication/login_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp().then((value) {
-    Get.put(AuthenticationController());
-  });
+  if (Platform.isAndroid) {
+    await Firebase.initializeApp(
+      options: const FirebaseOptions(
+        apiKey: 'AIzaSyD-jTrQb7Td3GVi60-E7da1L_teZpgrXNo',
+        appId: '1:229522913706:android:995acbb77fc15f5867d3d3',
+        messagingSenderId: '229522913706',
+        projectId: 'the-real-south-face',
+      ),
+    );
+  } else {
+    await Firebase.initializeApp().then((value) => null);
+  }
+
+  Get.put<AuthenticationController>(AuthenticationController());
+
+
+  /*await Firebase.initializeApp().then((value) {
+
+    Get.put<AuthenticationController>(AuthenticationController());
+    //Get.lazyPut(()=>AuthenticationController());
+
+  });*/
+  // Alternatively, you can use lazyPut
+  // Get.lazyPut(() => AuthenticationController());
+
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -25,8 +48,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: Colors.black,
       ),
-      home: LoginScreen(),
+      home: const LoginScreen(),
     );
   }
 }
-

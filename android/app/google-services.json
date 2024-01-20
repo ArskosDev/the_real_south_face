@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "229522913706",
+    "project_id": "the-real-south-face",
+    "storage_bucket": "the-real-south-face.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:229522913706:android:995acbb77fc15f5867d3d3",
+        "android_client_info": {
+          "package_name": "com.arskos.dev.rsf"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-jTrQb7Td3GVi60-E7da1L_teZpgrXNo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyCL0YXRH3GVjT1UMnjDtESriE56eOwr0ec</string>
+	<key>GCM_SENDER_ID</key>
+	<string>229522913706</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.arskos.dev.rsf</string>
+	<key>PROJECT_ID</key>
+	<string>the-real-south-face</string>
+	<key>STORAGE_BUCKET</key>
+	<string>the-real-south-face.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:229522913706:ios:57e45adb824963cd67d3d3</string>
+</dict>
+</plist>

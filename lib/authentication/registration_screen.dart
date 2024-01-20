@@ -2,17 +2,17 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rsf/authentication/login_screen.dart';
+import 'package:rsf/global.dart';
 import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
 
 import '../widgets/input_text_widget.dart';
-import 'authentication_controller.dart';
+import 'package:rsf/authentication/authentication_controller.dart';
 
 
 class RegistrationScreen extends StatefulWidget {
-  //const RegistrationScreen({super.key});
+  const RegistrationScreen({super.key});
 
   @override
   State<RegistrationScreen> createState() => _RegistrationScreenState();
@@ -25,7 +25,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   TextEditingController userNameTextEditingController = TextEditingController();
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
-  bool showProgressBar = false;
+
 
   var authenticationController = AuthenticationController.instanceAuth;
 
@@ -43,11 +43,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 height: 100,
               ),
 
-              Image.asset(
+             /* Image.asset(
                 'assets/images/RSF.png',
                 width: 100,
               ),
-
+*/
               Text(
                   "Bonne arrivee",
                   style: GoogleFonts.acme(
@@ -76,7 +76,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 onTap: (){
 
                   //allow user to choose image
-                  authenticationController.chooseImageFromGallery();
+                 // authenticationController.chooseImageFromGallery();
+                  authenticationController.captureImageFromCamera();
 
                 },
                 child: const CircleAvatar(
@@ -164,12 +165,25 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     ),
                     child: InkWell(
                       onTap: (){
-                        setState(() {
-                          showProgressBar = true;
-                        });
 
-                        //loading...
+                        if (authenticationController.profileImage != null
+                            && userNameTextEditingController.text.isNotEmpty
+                            && emailTextEditingController.text.isNotEmpty
+                            && passwordTextEditingController.text.isNotEmpty)
+                        {
 
+                          setState(() {
+                            showProgressBar = true;
+                          });
+
+                          //CREATE ACCOUNT
+                          authenticationController.createAccountForNewUser(
+                              authenticationController.profileImage!,
+                              userNameTextEditingController.text,
+                              emailTextEditingController.text,
+                              passwordTextEditingController.text,
+                          );
+                        }
                       },
                       child: const Center(
                         child: Text(
@@ -204,7 +218,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       InkWell(
                         onTap: (){
                           //send user to signup screen;
-                          Get.to(LoginScreen());
+                          //Get.to(const LoginScreen());
+                          Get.to(() => const LoginScreen());
                         },
                         child: const Text(
                             "Sign in",
@@ -220,19 +235,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
 
                 ],
-              ): Container(
-                //show animations
-                child: const SimpleCircularProgressBar(
-                  progressColors: [
-                    Colors.lightBlue,
-                    Colors.green,
-                    Colors.amber,
-                    Colors.red,
-                    Colors.white,
-                  ],
-                  animationDuration: 3,
-                  backColor: Colors.white38,
-                ),
+              ): const SimpleCircularProgressBar(
+                progressColors: [
+                  Colors.lightBlue,
+                  Colors.green,
+                  Colors.amber,
+                  Colors.red,
+                  Colors.white,
+                ],
+                animationDuration: 3,
+                backColor: Colors.white38,
               ),
 
             ],
